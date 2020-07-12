@@ -77,7 +77,7 @@
                 </div>
             @endif
 
-            <div class="content">
+            <!-- <div class="content">
                 <div class="title m-b-md">
                     Laravel
                 </div>
@@ -89,7 +89,7 @@
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
-            </div>
+            </div> -->
         </div>
     </body>
 </html>
