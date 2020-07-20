@@ -61,6 +61,26 @@
                             </div>
                         </div>
 
+                        <div style="margin-left:198px;" class="form-group row">
+                                <label for="usernemail">Role</label>
+                                 <div class="col-md-9">
+                                <select name="role_id" class="form-control{{ $errors->has('role_id') ? ' has-error' : '' }}" required>
+                                    <option value="">--Select Role--</option>
+                                    @foreach ($roles as $role)
+                                        <option value="{{$role->id}}">{{$role->role}}</option>
+                                    @endforeach
+                                </select>
+                                    </div>
+                                @if ($errors->has('role_id'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('role_id') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+
+
+
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

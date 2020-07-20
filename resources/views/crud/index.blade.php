@@ -1,3 +1,5 @@
+@extends('layouts.app')
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,11 +7,11 @@
   <meta charset="utf-8">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+  @section('content')
 
 <div class="container">
   <h2>Contact Details</h2>
@@ -40,9 +42,12 @@
         <td>{{$contact_details->email}}</td>
         <td>{{$contact_details->phone}}</td>
         <td>
-            
+            @if (Auth::user()->isAuthenticated("form", "u"))
             <a href="{{url('/edit_form')}}/{{$contact_details->id}}" class="btn btn-success"><i class="fa fa-edit"></i></a>
+            @endif
+             @if (Auth::user()->isAuthenticated("form", "d"))
             <a href="{{url('/delete_contact')}}/{{$contact_details->id}}" class="btn btn-danger delete_visitor_btn"><i class="fa fa-trash-o"></i></a>
+            @endif
 
         </td>
       </tr>
@@ -50,5 +55,6 @@
     </tbody>
   </table>
 </div>
+@endsection
 </body>
 </html>

@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use DB;
 
 class User extends Authenticatable
 {
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','role_id',
     ];
 
     /**
@@ -36,4 +37,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+     public function isAuthenticated($module, $operation) {
+        $rp = DB::select("SELECT permission FROM role_permissions JOIN permissions ON permissions.id = role_permissions.permission_id WHERE permissions.module = ? AND role_permissions.role_id = ? AND role_permissions.permission LIKE '%" . $operation . "%'", [$module, $this->role_id]);
+        if (!empty($rp))
+            return true;
+        return false;
+    }
 }
