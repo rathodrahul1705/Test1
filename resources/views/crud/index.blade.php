@@ -42,12 +42,8 @@
         <td>{{$contact_details->email}}</td>
         <td>{{$contact_details->phone}}</td>
         <td>
-            @if (Auth::user()->isAuthenticated("form", "u"))
             <a href="{{url('/edit_form')}}/{{$contact_details->id}}" class="btn btn-success"><i class="fa fa-edit"></i></a>
-            @endif
-             @if (Auth::user()->isAuthenticated("form", "d"))
             <a href="{{url('/delete_contact')}}/{{$contact_details->id}}" class="btn btn-danger delete_visitor_btn"><i class="fa fa-trash-o"></i></a>
-            @endif
 
         </td>
       </tr>

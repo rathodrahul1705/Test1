@@ -60,4 +60,75 @@ class RoleController extends Controller
     return $response;
     }
 
+    public function role(){
+
+        $roles = role::all();
+        return view('role.index',compact('roles'));
+    }
+
+    public function role_create(){
+        return view('role.create');
+    }
+
+    public function role_Save(Request $req){
+        $data = new role();
+        $data->role= $req->role;
+        $data->save();
+        return redirect('/role');
+    }
+
+    public function role_edit($role_id){
+    $roles = role::find($role_id);
+    return view('role.edit',compact('roles'));
+    }
+    public function role_edit_Save(Request $req,$role_id){
+
+        $roles = role::find($role_id);
+        $roles->role = $req->role;
+        $roles->save();
+        return redirect('/role');
+
+    }
+    public function role_delete($role_id){
+
+        $roles = role::find($role_id);
+        $roles->delete();
+        return redirect('role');
+    }
+
+    public function permission(){
+
+        $permissions = permission::all();
+        return view('permission.index',compact('permissions'));
+    }
+
+    public function permission_create(){
+        return view('permission.create');
+    }
+
+    public function permission_Save(Request $req){
+
+        $permission = new permission();
+        $permission->module = $req->permission;
+        $permission->save();
+        return redirect('/permission');
+    }
+
+    public function permission_edit($permission_id){
+         $permissions = permission::find($permission_id);
+         return view('permission.edit',compact('permissions'));
+    }
+    public function permission_edit_save(Request $req,$permission_id){
+
+        $permissions = permission::find($permission_id);
+        $permissions->module = $req->permission;
+        $permissions->save();
+        return redirect('/permission');
+    }
+    public function permission_delete($permission_id){
+
+           $permissions = permission::find($permission_id);
+           $permissions->delete();
+           return redirect('/permission');
+    }
 }
